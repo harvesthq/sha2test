@@ -10,16 +10,58 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript">
+(function() {
+  var COOKIE_NAME, createCookie, getCookie, notsupported, sha2support, testImage;
+
+  COOKIE_NAME = "sha2supported";
+
+  setSupported = function(status) {
+      expires = "; expires=" + Infinity;
+      document.cookie = COOKIE_NAME + "=" + status + expires + "; path=/";
+  }
+
+  getSupported = function() {
+    if (document.cookie.length > 0) {
+      c_start = document.cookie.indexOf(COOKIE_NAME + "=");
+      if (c_start != -1) {
+          c_start = c_start + COOKIE_NAME.length + 1;
+          c_end = document.cookie.indexOf(";", c_start);
+          if (c_end == -1) {
+              c_end = document.cookie.length;
+          }
+          return unescape(document.cookie.substring(c_start, c_end));
+      }
+    }
+    return "";
+  }
+
+  notsupported = function(){
+    alert("This is a bad browser! No SHA2 support!");
+  }
+
+  sha2support = getSupported();
+
+  if(sha2support === "supported"){
+    console.log("already tested, you're supported");
+  }
+  else if(sha2support === "notsupported"){
+    console.log("already teseted, you are fucked");
+  }
+  else {
+    console.log("testing now");
     testImage = new Image()
     testImage.onload = function(){
-      alert("SHA2 supported")
+      setSupported("supported");
+      console.log("supported");
     }
     testImage.onerror = function(){
-      alert("SHA2 NOT supported")
+      setSupported("notsupported");
+      notsupported();
     }
     testImage.src = "https://www.zendesk.com/public/assets/images/favicon.png"
+  }
 
-  //--><!]]>
+})();
 </script>
 </body>
 <html>
