@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+
+<div>
+  <h2>Hi, We are testing your browser for Sha2 compatibility.</h2>
+  <p>If this messaage fails to change after a few seconds, your browser may not be supported.</p>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">
+    testImage = new Image()
+    testImage.onload = function(){
+      alert("SHA2 supported")
+    }
+    testImage.onerror = function(){
+      alert("SHA2 NOT supported")
+    }
+    testImage.src = "https://www.zendesk.com/public/assets/images/favicon.png"
+
+  //--><!]]>
+</script>
+</body>
+<html>
