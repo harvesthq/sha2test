@@ -1,4 +1,1 @@
-parseResults([
-{"OrderId":1000, "OrderItem":"Cricket Bat", "Quantity": 10, "TotalPrice":20000},
-{"OrderId":1001, "OrderItem":"Football", "Quantity": 100, "TotalPrice":50000}
-]);
+sha2supported([{"supported":true}]);

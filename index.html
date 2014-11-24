@@ -2,19 +2,40 @@
 <head>
 </head>
 <body>
+
+<div>
+  <h2>We are testing your browser for Sha2 compatibility.</h2>
+  <p>If this messaage fails to change after a few seconds, your browser may not be supported.</p>
+</div>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>
-  $.ajax({
-     type: 'GET',
-      url: 'https://pfiller.github.io/sha2test/test.json',
-      async: true,
-      contentType: "application/json",
-      dataType: 'jsonp'
-  });
+var sha2test;
 
-  function parseResults(data){
-    alert("sha2 supported")
+sha2test = (function() {
+  function sha2test() {
+    this.doSha2Call();
   }
+
+  sha2test.prototype.doSha2Call = function() {
+    $.ajax({
+       type: 'GET',
+        url: 'test.json',
+        async: true,
+        contentType: "application/json",
+        dataType: 'jsonp'
+    });
+  };
+
+  sha2test.prototype.sha2supported = function() {
+    alert("sha2 supported");
+  };
+
+  return sha2test;
+
+})();
+
+var sha2supported = new sha2test().sha2supported;
 </script>
 </body>
 <html>
