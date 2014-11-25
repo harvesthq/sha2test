@@ -1,13 +1,61 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-</head>
+  <meta charset="utf-8">
+  <title>sha2test - determine if a browser supports sha2 ssl certificates</title>
+  <link rel="stylesheet" href="grid.css">
 <body>
+  <div class="wrap">
+    <div class="grid">
+      <div class="grid__col grid__col--3-of-5 grid__col grid__col--centered">
+        <header class="site__header">
+          <h1 class="site__title">sha2test</h1>
+          <span class="gamma site__desc">It's time for safer SSL</span>
+        </header>
+      </div>
+      <div class="grid__col grid__col--3-of-5 grid__col--centered">
+        <section>
+          <p class="test"><b>Testing your browser</b> for SHA-2 compatibility<br>
+           If this messaage fails to change after a few seconds, your browser may be at risk.</p>
+        </section>
 
-<div>
-  <h2>Hi, We are testing your browser for Sha2 compatibility.</h2>
-  <p>If this messaage fails to change after a few seconds, your browser may not be supported.</p>
-</div>
+        <section>
+          <p>SSL certificates signed with SHA-1 have been relied on to ensure our most important internet transactions happen in a safe place. As computer power has increased, these transactions are being put at greater and greater risk. Certificates signed with SHA-2 are significantly more secure, but come with diminished support. It's time to change that.</p>
 
-<script type="text/javascript" src="sha2test.js"></script>
+          <h2>sha2test detects SHA-2 browser support</h2>
+
+          <p>If a browser doesn't support SHA-2, it cannot load a page with a SHA-2 SSL certificate. At all. There's no warning message or diminished experience. There is only a browser error message along the lines of "unable to complete secure transaction".</p>
+
+          <p>The purpose of this tool is to help you determine if your customer base is techically ready for a SHA-2 SSL certificate. The tool can be used to count affected parties and educate them about upcoming changes. Many parts of the internet are already broken for people with bad browsers and it's only a matter of time before they're shut out of all the best parties.</p>
+        </section>
+        <section>
+          <h2>sha2test Usage</h2>
+          <p>Using the test is simple. Insert <a href="sha2test.js">the script</a> into your page and call the test with a callback. The callback will be fired with a <code>true</code> or <code>false</code> value indicating SHA-2 support. Use that information to track usage, issue warnings, and educate.</p>
+<pre><b>&lt;</b>script type<b>=</b><i>"text/javascript"</i> "src<b>=</b><i>"sha2test.js"</i><b>&gt;&lt;</b>/script<b>&gt;</b>
+<b>&lt;</b>script type<b>=</b><i>"text/javascript"</i><b>&gt;</b>
+  sha2test(<i>function</i>(sha2supported){
+    <cite>//if sha2supported is false, do something about it!</cite>
+  });
+<b>&lt;</b>/script<b>&gt;</b></pre>
+        </section>
+
+        <section>
+          <h2>How it works</h2>
+          <p>It's pretty simple. Once initiated, the test will attempt to load an image from a domain that has been signed with a SHA-2 SSL certificate. If the image loads successfully, the browser is SHA-2 compatibile. If it errors out, you've got a bad browser.</p>
+          <p>The script sets a cookie so that the image test only happens once per browser. If you call the function a second time, it will retrieve the value from cookie storage.</p>
+        </section>
+
+        <section>
+          <h2>Contribute</h2>
+          <p>If you see some way in which this script or page can be improved, by all means pop over to the <a href="https://github.com/harvesthq/sha2test">GitHub project</a> and open a pull request. For obvious reasons, any changes must work in ancient browsers. Remember to be polite and nice in your issues and pull requests – this software was made by people.</p>
+        </section>
+        <section>
+          <h2>Credits</h2>
+          <p>This script was built by <a href="https://twitter.com/pfiller">Patrick Filler</a> for <a href="https://www.getharvest.com">Harvest</a>.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="sha2test.js"></script>
 </body>
 <html>
