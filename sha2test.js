@@ -1,7 +1,7 @@
 // sha2test
 // by Patrick Filler, for Harvest
-// Full source at https://github.com/pfiller/sha2test
-// MIT License, https://github.com/pfiller/sha2test/blob/master/LICENSE.md
+// Full source at https://github.com/harvesthq/sha2test
+// MIT License, https://github.com/harvesthq/sha2test/blob/master/LICENSE.md
 (function(window) {
   var TEST_CALLBACK, COOKIE_NAME;
 
