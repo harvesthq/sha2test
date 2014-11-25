@@ -47,17 +47,18 @@
   sha2support = getSupported();
 
   if(sha2support === "supported"){
-    console.log("already tested, you're supported");
+    alert("already tested, you're good!");
   }
   else if(sha2support === "notsupported"){
-    console.log("already teseted, you are fucked");
+    alert("already teseted, not supported");
+    notsupported();
   }
   else {
     alert("testing now");
     testImage = new Image()
     testImage.onload = function(){
       setSupported("supported");
-      console.log("supported");
+      alert("supported");
     }
     testImage.onerror = function(){
       notsupported();
