@@ -1,13 +1,7 @@
-(function() {
+(function(window) {
   var COOKIE_NAME, createCookie, getCookie, notsupported, sha2support, testImage;
 
   COOKIE_NAME = "sha2supported";
-
-  if (typeof window.console === 'undefined') {
-    window.console = {
-      log: function() {}
-    };
-  }
 
   setSupported = function(status) {
     expires = "; expires=" + Infinity;
@@ -30,31 +24,44 @@
   }
 
   notsupported = function(){
-    setSupported("notsupported");
-    alert("This is a bad browser! No SHA2 support!");
+    if(sha2support==""){
+      sha2support = "notsupported";
+      setSupported(sha2support);
+    }
+    if(sha2callback){ sha2callback.call(sha2support); }
   }
 
   supported = function(){
-    console.log("supported");
-    setSupported("supported");
+    if(sha2support==""){
+      sha2support = "supported";
+      setSupported(sha2support);
+    }
+    if(sha2callback){ sha2callback.call(this, sha2support); }
   }
 
-  sha2support = getSupported();
-
-  if(sha2support === "supported"){
-    console.log("already tested, all good");
-    supported();
-  }
-  else if(sha2support === "notsupported"){
-    console.log("already testsed, not supported");
-    notsupported();
-  }
-  else {
-    console.log("testing");
+  testforsupport = function(){
     testImage = new Image()
     testImage.onload = supported;
     testImage.onerror = notsupported;
     testImage.src = "https://www.zendesk.com/public/assets/images/favicon.png"
   }
 
-})();
+  sha2support = "";
+  sha2callback = null;
+
+  window.sha2supportTest = function(callback){
+    sha2support = getSupported();
+    sha2callback = callback;
+
+    if(sha2support === "supported"){
+      supported();
+    }
+    else if(sha2support === "notsupported"){
+      notsupported();
+    }
+    else {
+      testforsupport();
+    }
+  }
+
+})(window);
