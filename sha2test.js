@@ -6,7 +6,7 @@
 
   function supportCallback(status){
     if(SUPPORT_CALLBACK){
-      SUPPORT_CALLBACK.call(this, status);
+      SUPPORT_CALLBACK.call(this, status==="supported");
     }
   }
 
