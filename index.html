@@ -4,38 +4,70 @@
 <body>
 
 <div>
-  <h2>We are testing your browser for Sha2 compatibility.</h2>
+  <h2>Hi, We are testing your browser for Sha2 compatibility.</h2>
   <p>If this messaage fails to change after a few seconds, your browser may not be supported.</p>
 </div>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script>
-var sha2test;
+<script type="text/javascript">
+(function() {
+  var COOKIE_NAME, createCookie, getCookie, notsupported, sha2support, testImage;
 
-sha2test = (function() {
-  function sha2test() {
-    this.doSha2Call();
+  COOKIE_NAME = "sha2supported";
+
+  if (typeof window.console === 'undefined') {
+    window.console = {
+      log: function() {}
+    };
   }
 
-  sha2test.prototype.doSha2Call = function() {
-    $.ajax({
-       type: 'GET',
-        url: 'test.json',
-        async: true,
-        contentType: "application/json",
-        dataType: 'jsonp'
-    });
-  };
+  setSupported = function(status) {
+      expires = "; expires=" + Infinity;
+      document.cookie = COOKIE_NAME + "=" + status + expires + "; path=/";
+  }
 
-  sha2test.prototype.sha2supported = function() {
-    alert("sha2 supported");
-  };
+  getSupported = function() {
+    if (document.cookie.length > 0) {
+      c_start = document.cookie.indexOf(COOKIE_NAME + "=");
+      if (c_start != -1) {
+          c_start = c_start + COOKIE_NAME.length + 1;
+          c_end = document.cookie.indexOf(";", c_start);
+          if (c_end == -1) {
+              c_end = document.cookie.length;
+          }
+          return unescape(document.cookie.substring(c_start, c_end));
+      }
+    }
+    return "";
+  }
 
-  return sha2test;
+  notsupported = function(){
+    alert("This is a bad browser! No SHA2 support!");
+  }
+
+  sha2support = getSupported();
+
+  if(sha2support === "supported"){
+    alert("already tested, you're good!");
+  }
+  else if(sha2support === "notsupported"){
+    alert("already teseted, not supported");
+    notsupported();
+  }
+  else {
+    alert("testing now");
+    testImage = new Image()
+    testImage.onload = function(){
+      setSupported("supported");
+      alert("supported");
+    }
+    testImage.onerror = function(){
+      notsupported();
+      setSupported("notsupported");
+    }
+    testImage.src = "https://www.zendesk.com/public/assets/images/favicon.png"
+  }
 
 })();
-
-var sha2supported = new sha2test().sha2supported;
 </script>
 </body>
 <html>
