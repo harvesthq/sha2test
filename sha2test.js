@@ -1,12 +1,12 @@
 (function(window) {
-  var SUPPORT_CALLBACK, COOKIE_NAME;
+  var TEST_CALLBACK, COOKIE_NAME;
 
   COOKIE_NAME = "sha2supported";
-  SUPPORT_CALLBACK = null;
+  TEST_CALLBACK = null;
 
-  function supportCallback(status){
-    if(SUPPORT_CALLBACK){
-      SUPPORT_CALLBACK.call(this, status==="supported");
+  function callTestCallback(status){
+    if(TEST_CALLBACK){
+      TEST_CALLBACK.call(this, status==="supported");
     }
   }
 
@@ -29,7 +29,7 @@
     expires = "; expires=" + Infinity;
     document.cookie = COOKIE_NAME + "=" + status + expires + "; path=/";
 
-    supportCallback(status);
+    callTestCallback(status);
   }
 
   function testForSha2support(){
@@ -40,14 +40,14 @@
     testImage.src = "https://www.zendesk.com/public/assets/images/favicon.png"
   }
 
-  window.sha2supported = function(callback){
+  window.sha2test = function(callback){
     var sha2support;
 
-    SUPPORT_CALLBACK = callback;
+    TEST_CALLBACK = callback;
     sha2support = getSha2support();
 
     if(sha2support !== ""){
-      supportCallback(sha2support);
+      callTestCallback(sha2support);
     }
     else {
       testForSha2support();
