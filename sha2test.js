@@ -10,8 +10,8 @@
   }
 
   setSupported = function(status) {
-      expires = "; expires=" + Infinity;
-      document.cookie = COOKIE_NAME + "=" + status + expires + "; path=/";
+    expires = "; expires=" + Infinity;
+    document.cookie = COOKIE_NAME + "=" + status + expires + "; path=/";
   }
 
   getSupported = function() {
@@ -30,29 +30,30 @@
   }
 
   notsupported = function(){
+    setSupported("notsupported");
     alert("This is a bad browser! No SHA2 support!");
+  }
+
+  supported = function(){
+    console.log("supported");
+    setSupported("supported");
   }
 
   sha2support = getSupported();
 
   if(sha2support === "supported"){
-    alert("already tested, you're good!");
+    console.log("already tested, all good");
+    supported();
   }
   else if(sha2support === "notsupported"){
-    alert("already teseted, not supported");
+    console.log("already testsed, not supported");
     notsupported();
   }
   else {
-    alert("testing now");
+    console.log("testing");
     testImage = new Image()
-    testImage.onload = function(){
-      setSupported("supported");
-      alert("supported");
-    }
-    testImage.onerror = function(){
-      notsupported();
-      setSupported("notsupported");
-    }
+    testImage.onload = supported;
+    testImage.onerror = notsupported;
     testImage.src = "https://www.zendesk.com/public/assets/images/favicon.png"
   }
 
