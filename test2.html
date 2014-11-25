@@ -53,15 +53,15 @@
     console.log("already teseted, you are fucked");
   }
   else {
-    console.log("testing now");
+    alert("testing now");
     testImage = new Image()
     testImage.onload = function(){
       setSupported("supported");
       console.log("supported");
     }
     testImage.onerror = function(){
-      setSupported("notsupported");
       notsupported();
+      setSupported("notsupported");
     }
     testImage.src = "https://www.zendesk.com/public/assets/images/favicon.png"
   }
