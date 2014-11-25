@@ -56,6 +56,17 @@
       </div>
     </div>
   </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.2.3/jquery.min.js"></script>
   <script type="text/javascript" src="sha2test.js"></script>
+  <script type="text/javascript">
+  sha2test(function(sha2supported){
+    if(sha2supported){
+      $(".test").addClass("supported-browser").html("<b>Your browser supports SHA-2 SLL Certificates</b><br>You can continue to enjoy the internet and <a href=\"http://media0.giphy.com/media/m6aIggqT7oB4A/200.gif\">all the cat gifs</a>!</b>")
+    }
+    else{
+      $(".test").addClass("unsupported-browser").html("<b>Your browser DOES NOT support SHA-2 SSL Certificates</b><br>Please consider an immediate browser upgrade. The internet will soon break for you.")
+    }
+  });
+</script>
 </body>
 <html>

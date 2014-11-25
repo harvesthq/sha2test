@@ -484,3 +484,11 @@ html {
   background-color: #f6f7f8;
   border-radius: .25em;
   padding: 1.4444rem; }
+
+.test.supported-browser {
+  background-color: #8FDD9C;
+}
+.test.unsupported-browser {
+  background-color: #DD242B;
+  color: black;
+}
