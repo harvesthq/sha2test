@@ -41,7 +41,7 @@
     testImage = new Image()
     testImage.onload = function(){ setSha2support("supported"); };
     testImage.onerror = function(){ setSha2support("notsupported"); };
-    testImage.src = "https://www.zendesk.com/public/assets/images/favicon.png"
+    testImage.src = "https://test.sha2test.com/icon.png"
   }
 
   window.sha2test = function(callback){
