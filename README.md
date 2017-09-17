@@ -9,7 +9,7 @@ The purpose of this tool is to help you determine if your customer base is techi
 Using the test is simple. Insert [the script](sha2test.js) into your page and call the test with a callback. The callback will be fired with a <code>true</code> or <code>false</code> value indicating SHA-2 support. Use that information to track usage, issue warnings, and educate.
 
 ```JavaScript
-<script type="text/javascript" "src="sha2test.js"></script>
+<script type="text/javascript" src="sha2test.js"></script>
 <script type="text/javascript">
   sha2test(function(sha2supported){
     //if sha2supported is false, do something about it!
